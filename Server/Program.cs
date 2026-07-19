@@ -95,15 +95,12 @@ builder.Services.AddSwaggerGen(c =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "CineCrick API V1");
-        c.RoutePrefix = "swagger"; // Route at /swagger
-    });
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "CineCrick API V1");
+    c.RoutePrefix = "swagger"; // Route at /swagger
+});
 
 app.UseCors("AllowAll");
 

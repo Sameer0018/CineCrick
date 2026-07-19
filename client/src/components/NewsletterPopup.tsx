@@ -10,16 +10,21 @@ export function NewsletterPopup() {
   const [agreed, setAgreed] = useState(false);
 
   useEffect(() => {
-    // Check if the user has already seen the popup
+    // SEO Fix: Intrusive Interstitial Penalty Prevention
+    // Replaced 2.5s timer with scroll-depth trigger to ensure we don't block content on initial load, especially on mobile.
     const hasSeenPopup = localStorage.getItem('hasSeenSignupPopup');
 
-    // For development/testing purposes, if you want it to show every time, 
-    // comment out the next line. Otherwise, it only shows on first visit.
     if (!hasSeenPopup) {
-      const timer = setTimeout(() => {
-        setIsOpen(true);
-      }, 2500); // Show after 2.5 seconds
-      return () => clearTimeout(timer);
+      const handleScroll = () => {
+        // Trigger popup only after user shows intent by scrolling
+        if (window.scrollY > 300) { 
+          setIsOpen(true);
+          window.removeEventListener('scroll', handleScroll);
+        }
+      };
+      
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
     }
   }, []);
 
@@ -54,15 +59,64 @@ export function NewsletterPopup() {
         </button>
 
         {/* Left Image Section */}
-        <div className="w-full md:w-[98%] relative rounded-t-3xl md:rounded-l-3xl md:rounded-tr-none overflow-hidden min-h-[250px] md:min-h-full">
+        <div className="hidden md:block w-full md:w-1/2 relative rounded-t-3xl md:rounded-l-3xl md:rounded-tr-none overflow-hidden min-h-[250px] md:min-h-full">
           <img
             src="https://res.cloudinary.com/diad73kp1/image/upload/v1784442873/ChatGPT_Image_Jul_19_2026_12_00_02_PM_ugb9rp.png"
-            alt="Sign Up"
+            alt="Join our community of data science and developer professionals"
+            loading="lazy"
             className="absolute inset-0 w-full h-full object-cover"
           />
         </div>
 
-
+        {/* Right Form Section - Added Missing Form Elements with Semantic HTML */}
+        <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">Create an Account</h2>
+          <p className="text-gray-600 mb-6">Join to access exclusive content and tutorials.</p>
+          
+          <form onSubmit={handleSubscribe} className="space-y-4">
+            <div>
+              <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
+              <input
+                id="username"
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+              <input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                required
+              />
+            </div>
+            <div className="flex items-center">
+              <input
+                id="agreed"
+                type="checkbox"
+                checked={agreed}
+                onChange={(e) => setAgreed(e.target.checked)}
+                className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                required
+              />
+              <label htmlFor="agreed" className="ml-2 block text-sm text-gray-900">
+                I agree to the Terms of Service
+              </label>
+            </div>
+            <button
+              type="submit"
+              className="w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+            >
+              Sign Up
+            </button>
+          </form>
+        </div>
 
       </div>
     </div>

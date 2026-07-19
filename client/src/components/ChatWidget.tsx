@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '../context/AuthContext';
 import { useChat } from '../context/ChatContext';
 import { apiRequest } from '../lib/api';
-import { 
+import {
   MessageSquare, X, ArrowLeft, Send, Sparkles, User, Eye, Ban, ShieldAlert, Plus, LogOut, ChevronRight, AlertCircle
 } from 'lucide-react';
 
@@ -59,7 +59,7 @@ export const ChatWidget = () => {
 
   // Widget visibility
   const [isOpen, setIsOpen] = useState(false);
-  
+
   // Views: 'list' | 'room' | 'feed'
   const [activeView, setActiveView] = useState<'list' | 'room' | 'feed'>('list');
   const [selectedConvId, setSelectedConvId] = useState<number | null>(null);
@@ -142,7 +142,7 @@ export const ChatWidget = () => {
   useEffect(() => {
     if (!connection || !selectedConvId || !isOpen || activeView !== 'room') return;
 
-    connection.invoke('JoinConversation', selectedConvId).catch(() => {});
+    connection.invoke('JoinConversation', selectedConvId).catch(() => { });
 
     const handleNewMessage = (msg: Message) => {
       setMessages(prev => {
@@ -189,7 +189,7 @@ export const ChatWidget = () => {
     connection.on('participant:left', handleParticipantLeft);
 
     return () => {
-      connection.invoke('LeaveConversation', selectedConvId).catch(() => {});
+      connection.invoke('LeaveConversation', selectedConvId).catch(() => { });
       connection.off('message:new', handleNewMessage);
       connection.off('typing:start', handleTypingStart);
       connection.off('typing:stop', handleTypingStop);
@@ -203,10 +203,10 @@ export const ChatWidget = () => {
     setInputText(e.target.value);
     if (!connection || !selectedConvId) return;
 
-    connection.invoke('SendTypingState', selectedConvId, true).catch(() => {});
+    connection.invoke('SendTypingState', selectedConvId, true).catch(() => { });
     if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
     typingTimeoutRef.current = setTimeout(() => {
-      connection.invoke('SendTypingState', selectedConvId, false).catch(() => {});
+      connection.invoke('SendTypingState', selectedConvId, false).catch(() => { });
     }, 1500);
   };
 
@@ -298,7 +298,7 @@ export const ChatWidget = () => {
           <div className="bg-[#16223E]/90 p-4 border-b border-card-border flex items-center justify-between">
             <div className="flex items-center space-x-2">
               {activeView !== 'list' && isLoggedIn && (
-                <button 
+                <button
                   onClick={() => {
                     setActiveView('list');
                     fetchConversations();
@@ -312,7 +312,7 @@ export const ChatWidget = () => {
                 <Sparkles className="h-4 w-4 text-orange-500 animate-pulse" /> CineCrick AI & Match Chat
               </span>
             </div>
-            <button 
+            <button
               onClick={() => setIsOpen(false)}
               className="text-gray-400 hover:text-white transition-colors"
             >
@@ -353,10 +353,10 @@ export const ChatWidget = () => {
                     // If real topics exist, merge them with seed profiles
                     const displayItems = openTopics.length > 0
                       ? openTopics.slice(0, 5).map((t, i) => ({
-                          ...seedProfiles[i % seedProfiles.length],
-                          idea: t.title,
-                          category: t.category,
-                        }))
+                        ...seedProfiles[i % seedProfiles.length],
+                        idea: t.title,
+                        category: t.category,
+                      }))
                       : seedProfiles;
 
                     return displayItems.map((person, i) => (
@@ -411,7 +411,7 @@ export const ChatWidget = () => {
                 {/* Sign Up Toaster Overlay */}
                 {showSignupToaster && (
                   <div className="absolute inset-0 bg-[#0B0F19]/95 z-50 flex flex-col items-center justify-center p-6 text-center rounded-xl" style={{ animation: 'fadeIn 0.2s ease-out' }}>
-                    <button 
+                    <button
                       onClick={() => setShowSignupToaster(false)}
                       className="absolute top-4 right-4 text-gray-400 hover:text-white"
                     >
@@ -472,8 +472,8 @@ export const ChatWidget = () => {
                         <div className="flex flex-col items-center justify-center h-[200px] text-center text-gray-500">
                           <MessageSquare className="h-10 w-10 text-gray-700 mb-2" />
                           <p className="text-xs">No active chats yet.</p>
-                          <button 
-                            onClick={() => setActiveView('feed')} 
+                          <button
+                            onClick={() => setActiveView('feed')}
                             className="text-xs text-orange-400 hover:underline font-semibold mt-1"
                           >
                             Browse Open Topics
@@ -481,7 +481,7 @@ export const ChatWidget = () => {
                         </div>
                       ) : (
                         conversations.map((c) => (
-                          <div 
+                          <div
                             key={c.id}
                             onClick={() => openRoom(c.id)}
                             className="flex items-center space-x-3 p-3 rounded-lg bg-[#16223E]/30 hover:bg-[#16223E]/70 border border-card-border/30 hover:border-card-border transition-all cursor-pointer group"
@@ -535,13 +535,12 @@ export const ChatWidget = () => {
                         {currentChat.status === 'active' && currentChat.revealState !== 'revealed' && (
                           <button
                             onClick={handleRequestReveal}
-                            className={`px-2 py-1 rounded text-[10px] font-bold border transition-all ${
-                              currentChat.revealState === 'requested_by_me'
+                            className={`px-2 py-1 rounded text-[10px] font-bold border transition-all ${currentChat.revealState === 'requested_by_me'
                                 ? 'border-orange-500/20 text-orange-400 bg-orange-950/30'
                                 : currentChat.revealState === 'requested_by_them'
-                                ? 'border-amber-500 text-amber-400 bg-amber-950/40 animate-pulse'
-                                : 'border-card-border hover:border-gray-500 text-gray-300'
-                            }`}
+                                  ? 'border-amber-500 text-amber-400 bg-amber-950/40 animate-pulse'
+                                  : 'border-card-border hover:border-gray-500 text-gray-300'
+                              }`}
                           >
                             {currentChat.revealState === 'requested_by_them' ? 'Accept Reveal' : 'Reveal Info'}
                           </button>
@@ -558,10 +557,9 @@ export const ChatWidget = () => {
                         const isMe = m.senderAlias === 'Me';
                         return (
                           <div key={m.id} className={`flex flex-col max-w-[80%] ${isMe ? 'ml-auto items-end' : 'mr-auto items-start'}`}>
-                            <div className={`p-2.5 rounded-xl text-xs ${
-                              isMe ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-br-none'
-                                   : 'bg-[#16223E] text-gray-100 rounded-bl-none border border-card-border/50'
-                            } ${m.isFlagged ? 'border-dashed border-red-500 bg-red-950/20 text-red-400' : ''}`}>
+                            <div className={`p-2.5 rounded-xl text-xs ${isMe ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-br-none'
+                                : 'bg-[#16223E] text-gray-100 rounded-bl-none border border-card-border/50'
+                              } ${m.isFlagged ? 'border-dashed border-red-500 bg-red-950/20 text-red-400' : ''}`}>
                               {m.isFlagged ? 'Held for moderation review' : m.body}
                             </div>
                             <span className="text-[8px] text-gray-500 mt-0.5 px-0.5">
@@ -611,8 +609,8 @@ export const ChatWidget = () => {
                     <form onSubmit={handleCreateTopic} className="bg-[#121A2E]/80 border border-card-border p-3.5 rounded-xl space-y-2.5 flex-shrink-0">
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-extrabold text-white uppercase">Post New Topic</span>
-                        <select 
-                          value={topicCategory} 
+                        <select
+                          value={topicCategory}
                           onChange={(e) => setTopicCategory(e.target.value)}
                           className="text-[10px] bg-[#0B0F19] border border-card-border text-gray-300 rounded p-1"
                         >
@@ -653,7 +651,7 @@ export const ChatWidget = () => {
                         </div>
                       ) : (
                         openTopics.map((topic) => (
-                          <div 
+                          <div
                             key={topic.id}
                             className="p-3 bg-[#16223E]/20 border border-card-border/50 rounded-lg flex flex-col justify-between"
                           >
@@ -680,7 +678,7 @@ export const ChatWidget = () => {
       )}
 
       {/* 2. Floating Circular Icon */}
-      <button 
+      <button
         onClick={() => {
           setIsOpen(!isOpen);
           if (!isOpen && isLoggedIn) {

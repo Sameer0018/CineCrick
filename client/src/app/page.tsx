@@ -109,112 +109,109 @@ function HomeContent() {
   return (
     <div className="space-y-8">
       {/* Hero Banner */}
-      <section className="relative overflow-hidden rounded-[40px] bg-[#090b14] p-8 sm:p-12 lg:p-20 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16 min-h-[550px] shadow-2xl">
-        {/* Deep Space Background Effects */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-            {/* Glowing nebulas */}
-            <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-[#FF6B6B]/10 rounded-full blur-[120px]" />
-            <div className="absolute top-[20%] -right-[20%] w-[60%] h-[60%] bg-[#4ECDC4]/15 rounded-full blur-[120px]" />
-            <div className="absolute -bottom-[20%] left-[20%] w-[50%] h-[50%] bg-purple-500/15 rounded-full blur-[120px]" />
-            
-            {/* Tiny stars */}
-            <div className="absolute top-[15%] left-[30%] w-1 h-1 bg-white rounded-full opacity-60 shadow-[0_0_10px_white]" />
-            <div className="absolute top-[45%] left-[10%] w-1.5 h-1.5 bg-white rounded-full opacity-40 shadow-[0_0_10px_white]" />
-            <div className="absolute top-[25%] right-[35%] w-1 h-1 bg-white rounded-full opacity-80 shadow-[0_0_10px_white]" />
-            <div className="absolute bottom-[35%] left-[40%] w-2 h-2 bg-white rounded-full opacity-30 shadow-[0_0_15px_white]" />
-            <div className="absolute bottom-[20%] right-[25%] w-1 h-1 bg-white rounded-full opacity-50 shadow-[0_0_10px_white]" />
-            <div className="absolute bottom-[10%] right-[10%] w-3 h-3 bg-white/20 rounded-full blur-[2px]" />
-            <div className="absolute top-[10%] left-[5%] w-2 h-2 bg-white/20 rounded-full blur-[1px]" />
-        </div>
+      <section className="relative overflow-hidden rounded-3xl bg-[#0B1120] border border-slate-800/80 p-8 sm:p-12 lg:p-16 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
+        {/* Left-aligned text (60%) */}
+        <div className="w-full lg:w-[60%] flex flex-col items-start text-left space-y-6 z-10">
+          {/* Eyebrow badge */}
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-700 bg-slate-900/60 text-slate-300 text-xs font-semibold">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F97316] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#F97316]"></span>
+            </span>
+            Built for Cricket × Cinema Fans
+          </div>
 
-        {/* Left Content */}
-        <div className="w-full lg:w-[50%] flex flex-col items-start text-left space-y-6 z-10">
-          
-          <h1 className="text-[44px] sm:text-5xl lg:text-[64px] font-black leading-[1.05] tracking-tight">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF7A7A] to-[#FF9E73]">
-              Find Your People.
-            </span>
-            <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF7A7A] to-[#FF9E73]">
-              Start Talking.
-            </span>
+          {/* Headline */}
+          <h1 className="text-[34px] sm:text-5xl lg:text-[56px] font-black text-white leading-[1.15] tracking-tight">
+            Know Your Cricket-Cinema <span className="italic text-[#F97316] font-extrabold">Connections</span>
           </h1>
 
-          <p className="text-slate-200 text-base lg:text-[19px] leading-relaxed max-w-md font-medium">
-            Join thousands discussing movies, cricket, travel, memes and everything in between.
+          {/* Subtext */}
+          <p className="text-slate-300 text-base lg:text-[18px] leading-relaxed max-w-xl">
+            CineCrick is a searchable archive of Indian cricketers, actor-owners, and the movies that connect them — daily trivia, real stats, and a growing community-verified database.
           </p>
 
-          <div className="flex items-center gap-1.5 mt-2">
-            <div className="w-7 h-1.5 rounded-full bg-[#FF7A7A]" />
-            <div className="w-1.5 h-1.5 rounded-full bg-slate-700" />
-            <div className="w-1.5 h-1.5 rounded-full bg-slate-700" />
-            <div className="w-1.5 h-1.5 rounded-full bg-slate-700" />
-            <div className="w-1.5 h-1.5 rounded-full bg-slate-700" />
-            <div className="w-1.5 h-1.5 rounded-full bg-slate-700" />
-            <span className="text-xs text-slate-500 font-semibold ml-2">(2 sc)</span>
-          </div>
-
-          <div className="w-full max-w-md bg-[#131627]/80 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 text-center mt-6 shadow-2xl relative overflow-hidden">
-            {/* Subtle inner top highlight */}
-            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-slate-500/50 to-transparent" />
-            <h3 className="text-white font-bold text-[17px] flex items-center justify-center gap-2 mb-1.5">
-              <span className="text-xl">🎁</span> Sign up today
-            </h3>
-            <p className="text-slate-300 text-[15px] font-medium leading-snug">
-              Play Today's Trivia Challenge.<br/>
-              Win exciting rewards.
-            </p>
-          </div>
-
-          <div className="w-full max-w-md flex flex-col gap-3 mt-4">
-            <button 
+          {/* CTA Row */}
+          <div className="flex flex-wrap gap-4 items-center pt-2">
+            <button
               onClick={handleExploreClick}
-              className="w-full py-4 rounded-full bg-gradient-to-r from-[#FF6B6B] via-[#FF8E53] to-[#4ECDC4] text-white font-extrabold text-[15px] shadow-[0_0_20px_rgba(255,107,107,0.3)] hover:opacity-90 hover:scale-[1.01] transition-all tracking-wide cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#F97316] hover:bg-[#EA580C] text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-orange-500/10 hover:-translate-y-0.5 cursor-pointer text-sm sm:text-base"
             >
-              [ Start Chatting Free ]
+              Explore Directory <ArrowRight className="h-4 w-4" />
             </button>
-            <Link href="/quiz" className="w-full flex">
-              <button className="w-full py-4 rounded-full border-[1.5px] border-slate-600 bg-transparent text-slate-300 font-extrabold text-[15px] hover:bg-slate-800/60 hover:text-white transition-all tracking-wide cursor-pointer">
-                [ Explore Trending ]
-              </button>
+            <Link
+              href="/quiz"
+              className="inline-flex items-center gap-2 px-6 py-3.5 border border-slate-700 bg-slate-900/40 text-slate-200 hover:bg-slate-800/80 hover:text-white font-bold rounded-xl transition-all hover:-translate-y-0.5 text-sm sm:text-base"
+            >
+              {quizAttempted ? 'View Streak Info' : "Play Today's Quiz"}
             </Link>
           </div>
         </div>
 
-        {/* Right Content - Illustration Graphic */}
-        <div className="w-full lg:w-[50%] flex justify-center items-center relative z-10 mt-16 lg:mt-0">
-          <div className="relative w-full max-w-[450px] aspect-square flex items-center justify-center">
-            {/* Portal Glow */}
-            <div className="absolute inset-2 bg-gradient-to-tr from-purple-600/30 via-[#0B1120]/50 to-blue-500/30 rounded-full blur-xl border border-slate-700/30" />
+        {/* Right-aligned large icon graphic (40%) */}
+        <div className="w-full lg:w-[40%] flex justify-center lg:justify-end items-center relative z-10">
+          <div className="relative w-64 h-64 sm:w-80 sm:h-80 flex items-center justify-center">
+            {/* Background outer glow */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 to-orange-500/10 rounded-full filter blur-3xl opacity-70 animate-pulse" />
             
-            {/* Emojis and Icons */}
-            <div className="absolute top-[8%] left-[22%] text-3xl animate-[bounce_4s_infinite]" style={{ animationDelay: '0s' }}>😍</div>
-            <div className="absolute top-[18%] right-[15%] text-2xl animate-[bounce_5s_infinite]" style={{ animationDelay: '1s' }}>✈️</div>
-            <div className="absolute top-[35%] right-[4%] text-4xl animate-[bounce_3s_infinite]" style={{ animationDelay: '2s' }}>🏆</div>
-            <div className="absolute bottom-[25%] right-[12%] text-3xl rotate-45 animate-[bounce_4s_infinite]" style={{ animationDelay: '0.5s' }}>🎤</div>
-            <div className="absolute bottom-[2%] left-[45%] text-5xl animate-[bounce_5s_infinite]" style={{ animationDelay: '1.5s' }}>🍿</div>
-            <div className="absolute bottom-[22%] left-[8%] text-4xl -rotate-45 animate-[bounce_3.5s_infinite]" style={{ animationDelay: '0.8s' }}>🏏</div>
-            <div className="absolute top-[40%] -left-[2%] text-4xl animate-[bounce_4s_infinite]" style={{ animationDelay: '2.5s' }}>🎬</div>
-            <div className="absolute top-[25%] right-[28%] text-2xl animate-[bounce_3s_infinite]" style={{ animationDelay: '1.2s' }}>⭐</div>
-            <div className="absolute bottom-[35%] right-[30%] text-2xl animate-[bounce_4.5s_infinite]" style={{ animationDelay: '0.3s' }}>⭐</div>
-            
-            {/* Small Chat Bubble */}
-            <div className="absolute top-[22%] left-[5%] bg-white rounded-xl rounded-bl-sm px-4 py-2.5 shadow-xl z-20 flex gap-1.5 items-center animate-pulse">
-                <span className="w-2 h-2 bg-slate-400 rounded-full" />
-                <span className="w-2 h-2 bg-slate-400 rounded-full" />
-                <span className="w-2 h-2 bg-slate-400 rounded-full" />
-            </div>
+            {/* Graphic SVG */}
+            <svg
+              viewBox="0 0 200 200"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-full max-w-[280px] sm:max-w-[320px] h-auto drop-shadow-[0_0_30px_rgba(249,115,22,0.25)] animate-float"
+            >
+              <defs>
+                <linearGradient id="hybridGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#3B82F6" />
+                  <stop offset="50%" stopColor="#F97316" />
+                  <stop offset="100%" stopColor="#EF4444" />
+                </linearGradient>
+                <radialGradient id="outerGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#F97316" stopOpacity="0.15" />
+                  <stop offset="60%" stopColor="#3B82F6" stopOpacity="0.05" />
+                  <stop offset="100%" stopColor="#0B1120" stopOpacity="0" />
+                </radialGradient>
+              </defs>
 
-            {/* Chat Bubble 2 (emojis) */}
-            <div className="absolute top-[42%] right-[2%] bg-white rounded-full px-4 py-2 shadow-xl z-20 flex gap-1 items-center transform rotate-6">
-                <span className="text-lg">🤪 😜 😝</span>
-            </div>
+              {/* Background Glow */}
+              <circle cx="100" cy="100" r="90" fill="url(#outerGlow)" />
 
-            {/* Center Boy Image */}
-            <div className="relative z-10 w-[95%] h-[95%] rounded-full overflow-hidden flex items-end justify-center">
-              <img src="/hero-illustration.png" alt="Happy user on phone" className="w-full h-full object-cover relative z-10 drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)]" />
-            </div>
-            
+              {/* Outer Film Reel Sprockets ring */}
+              <circle cx="100" cy="100" r="85" stroke="url(#hybridGradient)" strokeWidth="1.5" strokeDasharray="8 6" opacity="0.6" />
+              <circle cx="100" cy="100" r="75" stroke="url(#hybridGradient)" strokeWidth="1" opacity="0.3" />
+
+              {/* Film Reel Inner Cutouts */}
+              <circle cx="100" cy="45" r="12" stroke="url(#hybridGradient)" strokeWidth="1.5" fill="#0B1120" fillOpacity="0.6" />
+              <circle cx="100" cy="155" r="12" stroke="url(#hybridGradient)" strokeWidth="1.5" fill="#0B1120" fillOpacity="0.6" />
+              <circle cx="45" cy="100" r="12" stroke="url(#hybridGradient)" strokeWidth="1.5" fill="#0B1120" fillOpacity="0.6" />
+              <circle cx="155" cy="100" r="12" stroke="url(#hybridGradient)" strokeWidth="1.5" fill="#0B1120" fillOpacity="0.6" />
+
+              {/* Cricket seam curved lines */}
+              {/* Left seam */}
+              <path d="M 68 35 C 90 60, 90 140, 68 165" stroke="url(#hybridGradient)" strokeWidth="2.5" strokeDasharray="3 3" />
+              <path d="M 65 37 C 87 61, 87 139, 65 163" stroke="url(#hybridGradient)" strokeWidth="1" opacity="0.4" />
+              
+              {/* Right seam */}
+              <path d="M 132 35 C 110 60, 110 140, 132 165" stroke="url(#hybridGradient)" strokeWidth="2.5" strokeDasharray="3 3" />
+              <path d="M 135 37 C 113 61, 113 139, 135 163" stroke="url(#hybridGradient)" strokeWidth="1" opacity="0.4" />
+
+              {/* Center Reel core & Spokes */}
+              <circle cx="100" cy="100" r="22" stroke="url(#hybridGradient)" strokeWidth="2" fill="#0B1120" />
+              <circle cx="100" cy="100" r="8" stroke="url(#hybridGradient)" strokeWidth="1" fill="url(#hybridGradient)" />
+
+              {/* Spokes/Stitches radiating from center */}
+              <line x1="100" y1="78" x2="100" y2="57" stroke="url(#hybridGradient)" strokeWidth="1.5" opacity="0.8" />
+              <line x1="100" y1="122" x2="100" y2="143" stroke="url(#hybridGradient)" strokeWidth="1.5" opacity="0.8" />
+              <line x1="78" y1="100" x2="57" y2="100" stroke="url(#hybridGradient)" strokeWidth="1.5" opacity="0.8" />
+              <line x1="122" y1="100" x2="143" y2="100" stroke="url(#hybridGradient)" strokeWidth="1.5" opacity="0.8" />
+
+              {/* Angled Spokes */}
+              <line x1="84" y1="84" x2="68" y2="68" stroke="url(#hybridGradient)" strokeWidth="1" opacity="0.5" />
+              <line x1="116" y1="84" x2="132" y2="68" stroke="url(#hybridGradient)" strokeWidth="1" opacity="0.5" />
+              <line x1="84" y1="116" x2="68" y2="132" stroke="url(#hybridGradient)" strokeWidth="1" opacity="0.5" />
+              <line x1="116" y1="116" x2="132" y2="132" stroke="url(#hybridGradient)" strokeWidth="1" opacity="0.5" />
+            </svg>
           </div>
         </div>
       </section>

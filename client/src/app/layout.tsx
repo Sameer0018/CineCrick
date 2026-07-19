@@ -7,6 +7,7 @@ import { ChatProvider } from "../context/ChatContext";
 import { Navbar } from "../components/Navbar";
 import { BottomNav } from "../components/BottomNav";
 import { ChatWidget } from "../components/ChatWidget";
+import { NewsletterPopup } from "../components/NewsletterPopup";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -53,6 +54,7 @@ export default function RootLayout({
             </main>
             <BottomNav />
             <ChatWidget />
+            <NewsletterPopup />
           </ChatProvider>
         </AuthProvider>
       </body>

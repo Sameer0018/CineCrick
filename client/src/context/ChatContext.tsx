@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { HubConnectionBuilder, HubConnection } from '@microsoft/signalr';
 import { useAuth } from './AuthContext';
-import { apiRequest } from '../lib/api';
+import { apiRequest, API_BASE_URL } from '../lib/api';
 
 interface ChatContextType {
   unreadCount: number;
@@ -44,7 +44,7 @@ export const ChatProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     // Setup SignalR connection
     const newConnection = new HubConnectionBuilder()
-      .withUrl('http://localhost:5158/ws/conversations', {
+      .withUrl(`${API_BASE_URL}/ws/conversations`, {
         accessTokenFactory: () => token
       })
       .withAutomaticReconnect()
